@@ -1,52 +1,32 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout.jsx';
+import { PropertiesProvider } from './context/PropertiesContext.jsx';
+import { VisitsProvider } from './context/VisitsContext.jsx';
+import AutomationPage from './pages/AutomationPage.jsx';
+import CalendarPage from './pages/CalendarPage.jsx';
 import DashboardPage from './pages/DashboardPage.jsx';
-import PlaceholderPage from './pages/PlaceholderPage.jsx';
+import InboxPage from './pages/InboxPage.jsx';
+import InventoryPage from './pages/InventoryPage.jsx';
+import PropertyFormPage from './pages/PropertyFormPage.jsx';
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<AppLayout />}>
-        <Route index element={<Navigate to="/dashboard" replace />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route
-          path="/inbox"
-          element={
-            <PlaceholderPage
-              title="WhatsApp Live Inbox"
-              description="Chats, AI takeover toggle and the buyer context drawer will live here."
-            />
-          }
-        />
-        <Route
-          path="/inventory"
-          element={
-            <PlaceholderPage
-              title="Property Inventory"
-              description="Listings grid, filters and the AI copywriter will live here."
-            />
-          }
-        />
-        <Route
-          path="/automation"
-          element={
-            <PlaceholderPage
-              title="AI Automation Rules"
-              description="The Day 1, Day 3 and Day 14 follow-up flow builder will live here."
-            />
-          }
-        />
-        <Route
-          path="/calendar"
-          element={
-            <PlaceholderPage
-              title="Site-Visit Calendar"
-              description="Booked site visits and agent availability will live here."
-            />
-          }
-        />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
-      </Route>
-    </Routes>
+    <PropertiesProvider>
+      <VisitsProvider>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<Navigate to="/dashboard" replace />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/inbox" element={<InboxPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/inventory/new" element={<PropertyFormPage />} />
+            <Route path="/inventory/:id/edit" element={<PropertyFormPage />} />
+            <Route path="/automation" element={<AutomationPage />} />
+            <Route path="/calendar" element={<CalendarPage />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Route>
+        </Routes>
+      </VisitsProvider>
+    </PropertiesProvider>
   );
 }

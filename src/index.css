@@ -3,6 +3,7 @@
 /* Design tokens (Tailwind v4 CSS-first config) */
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-sinhala: 'Noto Sans Sinhala', 'Iskoola Pota', 'Inter', sans-serif;
 
   /* Deep slate surfaces used by the sidebar */
   --color-sidebar: #131b2e;
