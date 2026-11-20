@@ -157,14 +157,16 @@ export default function CalendarPage() {
       <VisitDetailsModal
         visit={selected}
         onClose={() => setSelectedId(null)}
-        onConfirm={() => {
-          updateVisit(selected.id, { status: 'confirmed' });
-          setFlash(`Visit with ${selected.buyerName} confirmed.`);
+        onConfirm={(visit) => {
+          if (!visit) return;
+          updateVisit(visit.id, { status: 'confirmed' });
+          setFlash(`Visit with ${visit.buyerName} confirmed.`);
           setSelectedId(null);
         }}
-        onCancelVisit={() => {
-          removeVisit(selected.id);
-          setFlash(`Visit with ${selected.buyerName} cancelled.`);
+        onCancelVisit={(visit) => {
+          if (!visit) return;
+          removeVisit(visit.id);
+          setFlash(`Visit with ${visit.buyerName} cancelled.`);
           setSelectedId(null);
         }}
       />

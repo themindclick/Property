@@ -41,7 +41,7 @@ function Body({ visit, onConfirm, onCancelVisit, onClose }) {
           <div className="mt-3 flex gap-2">
             <button
               type="button"
-              onClick={onCancelVisit}
+              onClick={() => onCancelVisit(visit)}
               className="h-9 rounded-lg bg-red-600 px-4 text-xs font-semibold text-white hover:bg-red-700"
             >
               Yes, cancel visit
@@ -60,7 +60,7 @@ function Body({ visit, onConfirm, onCancelVisit, onClose }) {
           {pending && (
             <button
               type="button"
-              onClick={onConfirm}
+              onClick={() => onConfirm(visit)}
               className="h-10 rounded-lg bg-emerald-500 px-4 text-sm font-semibold text-white hover:bg-emerald-600"
             >
               Confirm visit
